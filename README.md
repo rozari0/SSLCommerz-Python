@@ -1,6 +1,6 @@
 # SSLCOMMERZ PAYMENT GATEWAY
 
-**Note**: If you're using this wrapper with our sandbox environment `issandbox` is true and live `issandbox` is false. (Details: [Test Or Sandbox Account](https://developer.sslcommerz.com/)).
+**Note**: If you're using this wrapper with our sandbox environment `issandbox` is true and live `issandbox` is false. (Details: [Test Or Sandbox Account](https://developer.sslcommerz.com/registration/)).
 
 settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
 sslcommerz = SSLCOMMERZ(settings)
@@ -129,3 +129,10 @@ https://developer.sslcommerz.com/registration/
     refund_ref_id = '59bd63fea5455'
     response = sslcommez.query_refund_status(refund_ref_id)
     print(response)
+
+
+### Contributors
+
+> SSLCommerz
+
+> integration@sslcommerz.com
