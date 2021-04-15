@@ -21,7 +21,7 @@ https://developer.sslcommerz.com/registration/
 
     from sslcommerz_lib import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
+    sslcz = SSLCOMMERZ(settings)
     post_body = {}
     post_body['total_amount'] = 100.26
     post_body['currency'] = "BDT"
@@ -44,7 +44,7 @@ https://developer.sslcommerz.com/registration/
     post_body['product_profile'] = "general"
 
 
-    response = sslcommez.createSession(post_body)
+    response = sslcz.createSession(post_body)
     print(response)
 
 ### Vaidate payment with IPN
@@ -52,7 +52,7 @@ https://developer.sslcommerz.com/registration/
 
     settings = { 'store_id': 'test_testemi', 'store_pass': 'test_testemi@ssl', 'issandbox': True } 
 
-    sslcommez = SSLCOMMERZ(settings)
+    sslcz = SSLCOMMERZ(settings)
     post_body = {}
     post_body['tran_id'] = '5E121A0D01F92'
     post_body['val_id'] = '200105225826116qFnATY9sHIwo'
@@ -82,18 +82,21 @@ https://developer.sslcommerz.com/registration/
     post_body['value_d'] = ""
     post_body['risk_level'] = "0"
     post_body['risk_title'] = "Safe"
-    response = sslcommez.hash_validate_ipn(post_body)
-    print(response)
+    if sslcz.hash_validate_ipn(post_body):
+        response = sslcz.validationTransactionOrder(post_body['val_id'])
+        print(response)
+    else:
+        print("Hash validation failed")
 
 
 ### Get the status or details of a Payment Request by sessionkey
 
     from sslcommerz_lib import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
+    sslcz = SSLCOMMERZ(settings)
 
     sessionkey = 'A8EF93B75B8107E4F36049E80B4F9149'
-    response = sslcommez.transaction_query_session(sessionkey)
+    response = sslcz.transaction_query_session(sessionkey)
     print(response)
 
 
@@ -101,22 +104,22 @@ https://developer.sslcommerz.com/registration/
 
     from sslcommerz_lib import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
+    sslcz = SSLCOMMERZ(settings)
 
     tranid = '59C2A4F6432F8'
-    response = sslcommez.transaction_query_tranid(tranid)
+    response = sslcz.transaction_query_tranid(tranid)
     print(response)
 
 ### Refund Request 
 
     from sslcommerz_lib import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
+    sslcz = SSLCOMMERZ(settings)
 
     bank_tran_id = '1709162345070ANJdZV8LyI4cMw'
     refund_amount = '5.50'
     refund_remarks = 'out of stock'
-    response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
+    response = sslcz.init_refund(bank_tran_id,refund_amount,refund_remarks)
     print(response)
 
 
@@ -124,10 +127,10 @@ https://developer.sslcommerz.com/registration/
 
     from sslcommerz_lib import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
+    sslcz = SSLCOMMERZ(settings)
 
     refund_ref_id = '59bd63fea5455'
-    response = sslcommez.query_refund_status(refund_ref_id)
+    response = sslcz.query_refund_status(refund_ref_id)
     print(response)
 
 
