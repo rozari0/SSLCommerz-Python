@@ -1,4 +1,4 @@
-# SSLCOMMERZ - Python
+# SSLCOMMERZ - Python ([sslcommerz-lib](https://pypi.org/project/sslcommerz-lib/))
 
 **Note**: If you're using this wrapper with our sandbox environment `issandbox` is true and live `issandbox` is false. (Details: [Test Or Sandbox Account](https://developer.sslcommerz.com/registration/)).
 
