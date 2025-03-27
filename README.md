@@ -1,4 +1,4 @@
-# SSLCOMMERZ - Python ([sslcommerz-lib](https://pypi.org/project/sslcommerz-lib/))
+# SSLCOMMERZ - Python ([pysslcommerz](https://pypi.org/project/pysslcommerz/))
 
 **Note**: If you're using this wrapper with our sandbox environment `issandbox` is true and live `issandbox` is false. (Details: [Test Or Sandbox Account](https://developer.sslcommerz.com/registration/)).
 
@@ -7,7 +7,7 @@ sslcommerz = SSLCOMMERZ(settings)
 
 ## Installation
 
-`pip install sslcommerz-lib`
+`pip install pysslcommerz`
 
 ## Authentication Keys
 
@@ -20,7 +20,7 @@ https://developer.sslcommerz.com/registration/
 ### Create a Initial Payment Request Session 
 
 ```python3
-    from sslcommerz_lib import SSLCOMMERZ 
+    from pysslcommerz import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
     sslcz = SSLCOMMERZ(settings)
     post_body = {}
@@ -53,7 +53,7 @@ https://developer.sslcommerz.com/registration/
 ### Vaidate payment with IPN
 
 ```python3
-    from sslcommerz_lib import SSLCOMMERZ
+    from pysslcommerz import SSLCOMMERZ
 
     settings = { 'store_id': 'test_testemi', 'store_pass': 'test_testemi@ssl', 'issandbox': True } 
 
@@ -98,7 +98,7 @@ https://developer.sslcommerz.com/registration/
 ### Get the status or details of a Payment Request by sessionkey
 
 ```python3
-    from sslcommerz_lib import SSLCOMMERZ 
+    from pysslcommerz import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
     sslcz = SSLCOMMERZ(settings)
 
@@ -111,7 +111,7 @@ https://developer.sslcommerz.com/registration/
 ### Get the status or details of a Payment Request by tranid
 
 ```python3
-    from sslcommerz_lib import SSLCOMMERZ 
+    from pysslcommerz import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
     sslcz = SSLCOMMERZ(settings)
 
@@ -123,7 +123,7 @@ https://developer.sslcommerz.com/registration/
 ### Refund Request 
 
 ```python3
-    from sslcommerz_lib import SSLCOMMERZ 
+    from pysslcommerz import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
     sslcz = SSLCOMMERZ(settings)
 
@@ -138,7 +138,7 @@ https://developer.sslcommerz.com/registration/
 ### Get Refund Request Status
 
 ```python3
-    from sslcommerz_lib import SSLCOMMERZ 
+    from pysslcommerz import SSLCOMMERZ 
     settings = { 'store_id': 'testbox', 'store_pass': 'qwerty', 'issandbox': True }
     sslcz = SSLCOMMERZ(settings)
 

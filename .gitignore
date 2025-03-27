@@ -1,7 +1,7 @@
 dist/
 *.egg-info/
 .vscode
-sslcommerz_lib/__pycache__/*
+pysslcommerz/__pycache__/*
 .venv/
 *.pyc
 *.lock
