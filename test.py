@@ -1,4 +1,4 @@
-from sslcommerz_python import SSLCOMMERZ
+from pysslcommerz import SSLCOMMERZ
 
 settings = {"store_id": "testbox", "store_pass": "test_testemi@ssl", "issandbox": True}
 sslcommez = SSLCOMMERZ(settings)
