@@ -1,5 +1,5 @@
 [project]
-name = "sslcommerz-python"
+name = "pysslcommerz"
 version = "1.0"
 description = "Add your description here"
 readme = "README.md"
