@@ -1,5 +1,6 @@
-import requests
 import hashlib
+
+import requests
 
 
 class SSLCOMMERZ(object):
