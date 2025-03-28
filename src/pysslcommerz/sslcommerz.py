@@ -1,5 +1,6 @@
-import requests
 import hashlib
+
+import requests
 
 
 class SSLCOMMERZ(object):
@@ -29,7 +30,7 @@ class SSLCOMMERZ(object):
             + ".sslcommerz.com/validator/api/merchantTransIDvalidationAPI.php"
         )
 
-    def createSession(self, post_body):
+    def createSession(self, post_body: dict[str, str]):
         """
         Some mandatory parameters need to pass to SSLCommerz. It identify your customers and orders. Also you have to pass the success, fail, cancel url to redirect your customer after pay.
         Please follow this link https://developer.sslcommerz.com/.
@@ -40,70 +41,75 @@ class SSLCOMMERZ(object):
         post_body["store_passwd"] = self.store_pass
         return self.call_api("POST", self.createSessionUrl, post_body)
 
-    def validationTransactionOrder(self, validation_id):
+    def validationTransactionOrder(self, validation_id: str):
         """
         validation_id	: (mandatory) A Validation ID against the successful transaction which is provided by SSLCommerz.
 
         """
-        params = {}
-        params["val_id"] = validation_id
-        params["store_id"] = self.store_id
-        params["store_passwd"] = self.store_pass
-        params["format"] = "json"
+        params = {
+            "val_id": validation_id,
+            "store_id": self.store_id,
+            "store_passwd": self.store_pass,
+            "format": "json",
+        }
         return self.call_api("GET", self.validation_url, params)
 
-    def init_refund(self, bank_tran_id, refund_amount, refund_remarks):
+    def init_refund(self, bank_tran_id: str, refund_amount: str, refund_remarks: str):
         """
         bank_tran_id: (mandatory) The transaction ID at Banks End
         refund_amount: (mandatory) The amount will be refunded to card holder's account.
         refund_remarks: (mandatory)The reason of refund.
         """
-        params = {}
-        params["bank_tran_id"] = bank_tran_id
-        params["refund_amount"] = refund_amount
-        params["refund_remarks"] = refund_remarks
-        params["store_id"] = self.store_id
-        params["store_passwd"] = self.store_pass
-        params["format"] = "json"
+        params = {
+            "bank_tran_id": bank_tran_id,
+            "refund_amount": refund_amount,
+            "refund_remarks": refund_remarks,
+            "store_id": self.store_id,
+            "store_passwd": self.store_pass,
+            "format": "json",
+        }
         return self.call_api("GET", self.transaction_url, params)
 
-    def query_refund_status(self, refund_ref_id):
+    def query_refund_status(self, refund_ref_id: str):
         """
         refund_ref_id: (mandatory) This parameter will be returned only when the request successfully initiates
         """
-        params = {}
-        params["refund_ref_id"] = refund_ref_id
-        params["store_id"] = self.store_id
-        params["store_passwd"] = self.store_pass
-        params["format"] = "json"
+        params = {
+            "refund_ref_id": refund_ref_id,
+            "store_id": self.store_id,
+            "store_passwd": self.store_pass,
+            "format": "json",
+        }
         return self.call_api("GET", self.transaction_url, params)
 
-    def transaction_query_session(self, sessionkey):
+    def transaction_query_session(self, sessionkey: str):
         """
         sessionkey: The session id (mandatory) has been generated at the time of transaction initiated.
         """
 
-        params = {}
-        params["sessionkey"] = sessionkey
-        params["store_id"] = self.store_id
-        params["store_passwd"] = self.store_pass
-        params["format"] = "json"
+        params = {
+            "sessionkey": sessionkey,
+            "store_id": self.store_id,
+            "store_passwd": self.store_pass,
+            "format": "json",
+        }
         return self.call_api("GET", self.transaction_url, params)
 
-    def transaction_query_tranid(self, tran_id):
+    def transaction_query_tranid(self, tran_id: str):
         """
 
         tran_id: Transaction ID (mandatory)  that was sent by you during initiation.
 
         """
-        params = {}
-        params["tran_id"] = tran_id
-        params["store_id"] = self.store_id
-        params["store_passwd"] = self.store_pass
-        params["format"] = "json"
+        params = {
+            "tran_id": tran_id,
+            "store_id": self.store_id,
+            "store_passwd": self.store_pass,
+            "format": "json",
+        }
         return self.call_api("GET", self.transaction_url, params)
 
-    def hash_validate_ipn(self, post_body):
+    def hash_validate_ipn(self, post_body: dict[str, str]):
         """
         As IPN URL already set in panel. All the payment notification will reach through IPN prior to user return back. So it needs validation for amount and transaction properly.
 
@@ -139,7 +145,7 @@ class SSLCOMMERZ(object):
         else:
             return False
 
-    def checkKey(self, post_body, key):
+    def checkKey(self, post_body: dict[str, str], key: str):
         if key in post_body.keys():
             return True
         else:
@@ -148,7 +154,15 @@ class SSLCOMMERZ(object):
     def ksort(self, d):
         return [(k, d[k]) for k in sorted(d.keys())]
 
-    def call_api(self, method, url, payload):
+    def call_api(self, method: str, url: str, payload: dict[str, str]):
+        """
+        Call the API with the given method, url, and payload.
+        :param method: The HTTP method to use (GET, POST, PUT, DELETE).
+        :param url: The URL to call.
+        :param
+        :param payload: The payload to send with the request.
+        :return: The response from the API.
+        """
         try:
             if method == "POST":
                 response = requests.post(url, data=payload)
@@ -166,4 +180,5 @@ class SSLCOMMERZ(object):
                 response = {"response": "Method is not valid"}
             return response.json()
         except Exception as e:
-            print("An exception occurred")
+            print(e)
+            # print("An exception occurred")
